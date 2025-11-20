@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
   CardFooter,
@@ -12,10 +11,11 @@ import {
 } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import axios from '@/config/api';
+import { useAuth } from '@/hooks/useAuth';
 
-export default function LoginForm({ onLogin }) {
+export default function LoginForm() {
   const [form, setForm] = useState({});
+  const { onLogin } = useAuth();
 
   const handleForm = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,24 +24,7 @@ export default function LoginForm({ onLogin }) {
   const submitForm = (e) => {
     e.preventDefault();
 
-    const fetchLogin = async () => {
-      const options = {
-        method: 'POST',
-        url: '/login',
-        data: form,
-      };
-
-      try {
-        let response = await axios.request(options);
-        console.log(response.data);
-        onLogin(true, response.data.token);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchLogin();
-    console.log(form);
+    onLogin(form.email, form.password);
   };
 
   return (

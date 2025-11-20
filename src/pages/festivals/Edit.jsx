@@ -3,6 +3,7 @@ import { Input } from '@/components/ui/input';
 import axios from '@/config/api';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function EditFestival() {
   const [form, setForm] = useState({
@@ -13,7 +14,7 @@ export default function EditFestival() {
     end_date: '',
   });
 
-  const token = localStorage.getItem('token');
+  const { token } = useAuth();
   const { id } = useParams();
 
   useEffect(() => {

@@ -1,13 +1,13 @@
-import LoginForm from "@/components/LoginForm";
+import LoginForm from '@/components/LoginForm';
+import { useAuth } from '@/hooks/useAuth';
 
-export default function Home({onLogin, loggedIn}) {
-    return (
-        <>
-        <h1>This is Home</h1>
-        {
-            !loggedIn &&
-            <LoginForm onLogin={onLogin}/>
-        }
-        </>
-    );
-};
+export default function Home() {
+  const { token } = useAuth();
+
+  return (
+    <>
+      <h1>This is Home</h1>
+      {!token && <LoginForm />}
+    </>
+  );
+}

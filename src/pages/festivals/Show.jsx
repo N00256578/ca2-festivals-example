@@ -8,12 +8,13 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import { useAuth } from '@/hooks/useAuth';
 
 export default function FestivalsShow() {
   const [festival, setFestival] = useState([]);
   const { id } = useParams();
 
-  let token = localStorage.getItem('token');
+  const { token } = useAuth();
 
   useEffect(() => {
     const options = {

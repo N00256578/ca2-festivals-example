@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useAuth } from '@/hooks/useAuth';
 import {
   IconDashboard,
   IconInnerShadowTop,
@@ -58,9 +59,10 @@ const data = {
   ],
 };
 
-export function AppSidebar({ onLogin, loggedIn, ...props }) {
+export function AppSidebar({ ...props }) {
   const location = useLocation();
   const navigate = useNavigate();
+  const { token } = useAuth();
 
   useEffect(() => {
     if (location.state?.message) {
@@ -99,9 +101,9 @@ export function AppSidebar({ onLogin, loggedIn, ...props }) {
       <SidebarContent>
         <NavMain items={data.navMain} />
       </SidebarContent>
-      {loggedIn && (
+      {token && (
         <SidebarFooter>
-          <NavUser user={data.user} onLogin={onLogin} />
+          <NavUser user={data.user} />
         </SidebarFooter>
       )}
     </Sidebar>
