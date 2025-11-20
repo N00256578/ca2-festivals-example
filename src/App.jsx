@@ -8,8 +8,7 @@ import { SiteHeader } from './components/site-header';
 import FestivalsShow from './pages/festivals/Show';
 import CreateFestival from './pages/festivals/Create';
 import EditFestival from './pages/festivals/Edit';
-import { toast, Toaster } from 'sonner';
-import { useLocation, useNavigate } from 'react-router';
+import { Toaster } from 'sonner';
 
 export default function App() {
   const [loggedIn, setLoggedIn] = useState(false);
